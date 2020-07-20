@@ -167,22 +167,60 @@ body {
         margin-top: 10px;
     }
 }
+
+// TODO: tohle upravim ten checkbox jak jsem zvyklej psat ja OK?
+// zaklad je classa
+
 .checkbox1 {
-    margin-top: 1px;
-    width: 18px;
-    height: 18px;
+	position: relative; // tohle budes potrebovat abys nastavil pseudo tridu ::after, nebo ::before uvnitr toho checkboxu
+	-webkit-appearance: none; // timhle odstranis defaultni stylu na jednotlive formularove prvky
+	outline: none; // to je ten modrej ramecek po kliknutí, to se většinou moc nedělá
+	// pak pokracujes, jak chces aby byl velkej
+	width: 18px;
+	height: 18px;
+	// tady si nastavis pozadi a border pri tom normalnim stavu a v tom :checked budes mit ma vzpadat to pozadi a border kdyz bude zakliknuto
+	background-color: #FFF;
+	border: solid 1px #000;
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+	&:checked {
+		background-color: orange;
+		border: solid 1px orange;
+	}
+	// toohle je jak bude vzpadat kdzy bude zatrhnute = checked / kvuli tomu stahnu tohle https://www.flaticon.com/free-icon/check_1828743?term=check&page=1&position=21 napriklad
+	&:checked:after {// tohle :checked:after znamena jak ma vypadat vnitrek toho input.. to je ten after kdzy bude zakliknuto
+		content: ""; // content je vlastnost, ktera musi byt u pseudo elementu vzdycky
+		// tohle je absolutne napozicovane vuci tomu .checkbox1
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		width: 10px;
+		height: 10px;
+		background: url("../images/correct.svg") no-repeat center/12px;
+	}
 }
-input[type=checkbox]:checked {
-    -webkit-appearance: none;
-    background-color: orange;
-    content:"\2714";
-}
-input[type=checkbox]:checked:after {
-    content:"\2714";
-    color: white;
-    padding-top: 3px;
-    padding-left: 3px;
-}
+
+//.checkbox1 {
+//    margin-top: 1px;
+//    width: 18px;
+//    height: 18px;
+//}
+//input[type=checkbox]:checked {
+//    -webkit-appearance: none;
+//    background-color: orange;
+//    content:"\2714";
+//}
+//input[type=checkbox]:checked:after {
+//    content:"\2714";
+//    color: white;
+//    padding-top: 3px;
+//    padding-left: 3px;
+//}
+
+
+// TODO konec prepsani checkboxu
+
 .text1 {
     padding-left: 10px;
     padding-top: 1px;
